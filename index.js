@@ -1,53 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios');
-const cors = require('cors');
+// Import packages
+const express = require("express");
+const home = require("./routes/home");
+
+// Middlewares
 const app = express();
-const port = 3005;
-const logger = require("morgan")
-const path = require("path");
+app.use(express.json());
 
+// Routes
+app.use("/home", home);
 
-app.use(bodyParser.json());
-app.use(cors());
-app.use(logger("dev"))
-
-// //app.use(express.static(path.join(__dirname, "../client/build")))
-// const RECAPTCHA_SECRET_KEY = '6LfDsqYnAAAAAMxr6c0OKKQ3ABvXoAQaHkuQvijM'; // Replace with your reCAPTCHA secret key
-
-app.post('/api/postData', async (req, res) => {
-
-  console.log('sample data')
-//   const data = req.body;
-//   const captchaToken = data.captchaToken;
-//   console.log('Received data:', data);
-//   try {
-//     // Verify reCAPTCHA token
-//     const response = await axios.post(
-//       `https://www.google.com/recaptcha/api/siteverify?secret=${RECAPTCHA_SECRET_KEY}&response=${captchaToken}`
-//     );
-//         console.log('response', response);
-//     if (response.data.success) {
-//       console.log('reCAPTCHA verification successful');
-//       console.log('Received data:', data);
-//       // Process the data and send a response if needed
-//       res.json({ message: 'Data received and reCAPTCHA verified successfully' });
-//     } else {
-//       console.log('reCAPTCHA verification failed');
-//       res.status(400).json({ error: 'reCAPTCHA verification failed' });
-//     }
-//   } catch (error) {
-//     console.error('Error:', error);
-//     res.status(500).json({ error: 'An error occurred' });
-//   }
-});
-
-
-
-app.get('/api/getData',async(req,res)=>{  console.log("test") })
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-module.exports = app;
+// connection
+const port = process.env.PORT || 9001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
