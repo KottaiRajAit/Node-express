@@ -2,17 +2,15 @@ const express = require("express");
 const router = express.Router();
 const axios = require('axios');
 
-// router.get("/", async (req, res, next) => {
-//   return res.status(200).json({
-//     title: "Express Testing",
-//     message: "The app is working properly!",
-//   });
-// });
+router.get("/getData", async (req, res, next) => {
+  return res.status(200).json({
+    title: "Express Testing",
+    message: "The app is working properly!",
+  });
+});
 
 
 
-
-//app.use(express.static(path.join(__dirname, "../client/build")))
 const RECAPTCHA_SECRET_KEY = '6LfDsqYnAAAAAMxr6c0OKKQ3ABvXoAQaHkuQvijM'; // Replace with your reCAPTCHA secret key
 
 router.post('/', async (req, res) => {
